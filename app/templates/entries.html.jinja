@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Autographs</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .entries-container {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .entries-title {
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .entries-count {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+        .card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .card-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #4a3f7a;
+            margin-bottom: 8px;
+        }
+        .card-detail {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 3px 0;
+        }
+        .card-note {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: #f0edfa;
+            border-left: 4px solid #764ba2;
+            border-radius: 4px;
+            color: #444;
+            font-style: italic;
+        }
+        .empty {
+            text-align: center;
+            color: rgba(255,255,255,0.85);
+            font-size: 1.1rem;
+            margin-top: 60px;
+        }
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .back-btn a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: underline;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body style="align-items: flex-start;">
+    <div class="entries-container">
+        <h1 class="entries-title">📖 Autograph Entries</h1>
+        <p class="entries-count">{{ entries | length }} autograph(s) received</p>
+        <div class="back-btn"><a href="/">← Back to Home</a></div>
+
+        {% if entries %}
+            {% for e in entries %}
+            <div class="card">
+                <div class="card-name">{{ e.full_name }}</div>
+                <div class="card-detail">📞 {{ e.contact }}</div>
+                <div class="card-detail">📧 {{ e.email }}</div>
+                <div class="card-detail">🏠 {{ e.hometown }}</div>
+                {% if e.note %}
+                <div class="card-note">💬 {{ e.note }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="empty">No autographs yet. Share the link with your friends! ❤️</p>
+        {% endif %}
+    </div>
+</body>
+</html>
